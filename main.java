@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         isLeapYear(2021);
@@ -14,16 +16,15 @@ public class Main {
     }
 
     public static void checkAppVersion(int osType, int clientDeviceYear) {
-        int currentYear = 2023;
+        int currentYear = LocalDate.now().getYear();
+        String message = "Установите обычную версию приложения";
+
         if (clientDeviceYear < 2015) {
-            if (osType == 0) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-            } else {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке");
-            }
-        } else {
-            System.out.println("Установите обычную версию приложения");
+            message = osType == 0
+                    ? "Установите облегченную версию приложения для iOS по ссылке"
+                    : "Установите облегченную версию приложения для Android по ссылке";
         }
+        System.out.println(message);
     }
 
     public static void calculateDeliveryDays(int deliveryDistance) {
