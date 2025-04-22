@@ -1,69 +1,43 @@
 public class Main {
     public static void main(String[] args) {
-        int[] integersArray = new int[]{1, 2, 3};
-        double[] doublesArray = new double[]{1.57, 7.654, 9.986};
-        String[] arbitraryArray = new String[]{"Element1", "Element2", "Element3"};
-
-        //2
-        System.out.println(String.join(", ", printArray(integersArray)));
-        System.out.println(String.join(", ", printArray(doublesArray)));
-        System.out.println(String.join(", ", arbitraryArray));
-
-        //3
-        System.out.println(String.join(", ", printReversedArray(integersArray)));
-        System.out.println(String.join(", ", printReversedArray(doublesArray)));
-        System.out.println(String.join(", ", reverseArray(arbitraryArray)));
-
-        //4
-        makeOddEven(integersArray);
-        System.out.println(String.join(", ", printArray(integersArray)));
+        isLeapYear(2021);
+        checkAppVersion(0, 2014);
+        calculateDeliveryDays(95);
     }
 
-    public static String[] printArray(int[] array) {
-        String[] result = new String[array.length];
-        for (int i = 0; i < array.length; i++) {
-            result[i] = String.valueOf(array[i]);
+    public static void isLeapYear(int year) {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            System.out.println(year + " год — високосный год");
+        } else {
+            System.out.println(year + " год — невисокосный год");
         }
-        return result;
     }
 
-    public static String[] printArray(double[] array) {
-        String[] result = new String[array.length];
-        for (int i = 0; i < array.length; i++) {
-            result[i] = String.valueOf(array[i]);
-        }
-        return result;
-    }
-
-    public static String[] printReversedArray(int[] array) {
-        String[] result = new String[array.length];
-        for (int i = array.length - 1, j = 0; i >= 0; i--, j++) {
-            result[j] = String.valueOf(array[i]);
-        }
-        return result;
-    }
-
-    public static String[] printReversedArray(double[] array) {
-        String[] result = new String[array.length];
-        for (int i = array.length - 1, j = 0; i >= 0; i--, j++) {
-            result[j] = String.valueOf(array[i]);
-        }
-        return result;
-    }
-
-    public static String[] reverseArray(String[] array) {
-        String[] result = new String[array.length];
-        for (int i = array.length - 1, j = 0; i >= 0; i--, j++) {
-            result[j] = array[i];
-        }
-        return result;
-    }
-
-    public static void makeOddEven(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 != 0) {
-                array[i]++;
+    public static void checkAppVersion(int osType, int clientDeviceYear) {
+        int currentYear = 2023;
+        if (clientDeviceYear < 2015) {
+            if (osType == 0) {
+                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+            } else {
+                System.out.println("Установите облегченную версию приложения для Android по ссылке");
             }
+        } else {
+            System.out.println("Установите обычную версию приложения");
         }
+    }
+
+    public static void calculateDeliveryDays(int deliveryDistance) {
+        int days = 0;
+        if (deliveryDistance <= 20) {
+            days = 1;
+        } else if (deliveryDistance <= 60) {
+            days = 2;
+        } else if (deliveryDistance <= 100) {
+            days = 3;
+        } else {
+            System.out.println("Доставка недоступна");
+            return;
+        }
+        System.out.println("Потребуется дней: " + days);
     }
 }
