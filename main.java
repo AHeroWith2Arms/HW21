@@ -1,7 +1,6 @@
 class Author {
     private String firstName;
     private String lastName;
-
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -15,7 +14,6 @@ class Author {
         return lastName;
     }
 }
-
 class Book {
     private String title;
     private Author author;
@@ -54,8 +52,6 @@ public class LibraryApp {
         System.out.println("Before updating publication year:");
         System.out.println("Book 1: " + book1.getTitle() + " by " + book1.getAuthor().getFirstName() + " " + book1.getAuthor().getLastName() + ", Year: " + book1.getPublicationYear());
         System.out.println("Book 2: " + book2.getTitle() + " by " + book2.getAuthor().getFirstName() + " " + book2.getAuthor().getLastName() + ", Year: " + book2.getPublicationYear());
-
-        // Update the publication year of a book
         book2.setPublicationYear(2018);
 
         System.out.println("nAfter updating publication year:");
