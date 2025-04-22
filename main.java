@@ -1,69 +1,65 @@
-public class Main {
+class Author {
+    private String firstName;
+    private String lastName;
+
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+}
+
+class Book {
+    private String title;
+    private Author author;
+    private int publicationYear;
+
+    public Book(String title, Author author, int publicationYear) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+}
+
+public class LibraryApp {
     public static void main(String[] args) {
-        int[] integersArray = new int[]{1, 2, 3};
-        double[] doublesArray = new double[]{1.57, 7.654, 9.986};
-        String[] arbitraryArray = new String[]{"Element1", "Element2", "Element3"};
+        Author author1 = new Author("John", "Smith");
+        Author author2 = new Author("Emma", "Johnson");
+        Book book1 = new Book("The Great Novel", author1, 2000);
+        Book book2 = new Book("Fantastic Adventures", author2, 2015);
 
-        //2
-        System.out.println(String.join(", ", printArray(integersArray)));
-        System.out.println(String.join(", ", printArray(doublesArray)));
-        System.out.println(String.join(", ", arbitraryArray));
+        System.out.println("Before updating publication year:");
+        System.out.println("Book 1: " + book1.getTitle() + " by " + book1.getAuthor().getFirstName() + " " + book1.getAuthor().getLastName() + ", Year: " + book1.getPublicationYear());
+        System.out.println("Book 2: " + book2.getTitle() + " by " + book2.getAuthor().getFirstName() + " " + book2.getAuthor().getLastName() + ", Year: " + book2.getPublicationYear());
 
-        //3
-        System.out.println(String.join(", ", printReversedArray(integersArray)));
-        System.out.println(String.join(", ", printReversedArray(doublesArray)));
-        System.out.println(String.join(", ", reverseArray(arbitraryArray)));
+        // Update the publication year of a book
+        book2.setPublicationYear(2018);
 
-        //4
-        makeOddEven(integersArray);
-        System.out.println(String.join(", ", printArray(integersArray)));
-    }
-
-    public static String[] printArray(int[] array) {
-        String[] result = new String[array.length];
-        for (int i = 0; i < array.length; i++) {
-            result[i] = String.valueOf(array[i]);
-        }
-        return result;
-    }
-
-    public static String[] printArray(double[] array) {
-        String[] result = new String[array.length];
-        for (int i = 0; i < array.length; i++) {
-            result[i] = String.valueOf(array[i]);
-        }
-        return result;
-    }
-
-    public static String[] printReversedArray(int[] array) {
-        String[] result = new String[array.length];
-        for (int i = array.length - 1, j = 0; i >= 0; i--, j++) {
-            result[j] = String.valueOf(array[i]);
-        }
-        return result;
-    }
-
-    public static String[] printReversedArray(double[] array) {
-        String[] result = new String[array.length];
-        for (int i = array.length - 1, j = 0; i >= 0; i--, j++) {
-            result[j] = String.valueOf(array[i]);
-        }
-        return result;
-    }
-
-    public static String[] reverseArray(String[] array) {
-        String[] result = new String[array.length];
-        for (int i = array.length - 1, j = 0; i >= 0; i--, j++) {
-            result[j] = array[i];
-        }
-        return result;
-    }
-
-    public static void makeOddEven(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 != 0) {
-                array[i]++;
-            }
-        }
+        System.out.println("nAfter updating publication year:");
+        System.out.println("Book 1: " + book1.getTitle() + " by " + book1.getAuthor().getFirstName() + " " + book1.getAuthor().getLastName() + ", Year: " + book1.getPublicationYear());
+        System.out.println("Book 2: " + book2.getTitle() + " by " + book2.getAuthor().getFirstName() + " " + book2.getAuthor().getLastName() + ", Year: " + book2.getPublicationYear());
     }
 }
