@@ -39,26 +39,52 @@ class Book {
         return publicationYear;
     }
 
-    public void setPublicationYear(int publicationYear) {
-        this.publicationYear = publicationYear;
+    public class Author {
+        private String name;
+        private String surname;
+
+        public Author(String name, String surname) {
+            this.name = name;
+            this.surname = surname;
+        }
+
+        public String toString() {
+            return name + " " + surname;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (!(obj instanceof Author)) return false;
+            Author author = (Author) obj;
+            return name.equals(author.name) && surname.equals(author.surname);
+        }
+
+        public int hashCode() {
+            return name.hashCode() * 31 + surname.hashCode();
+        }
     }
-}
 
-public class LibraryApp {
-    public static void main(String[] args) {
-        Author author1 = new Author("John", "Smith");
-        Author author2 = new Author("Emma", "Johnson");
-        Book book1 = new Book("The Great Novel", author1, 2000);
-        Book book2 = new Book("Fantastic Adventures", author2, 2015);
+    public class Book {
+        private String title;
+        private Author author;
 
-        System.out.println("Before updating publication year:");
-        System.out.println("Book 1: " + book1.getTitle() + " by " + book1.getAuthor().getFirstName() + " " + book1.getAuthor().getLastName() + ", Year: " + book1.getPublicationYear());
-        System.out.println("Book 2: " + book2.getTitle() + " by " + book2.getAuthor().getFirstName() + " " + book2.getAuthor().getLastName() + ", Year: " + book2.getPublicationYear());
+        public Book(String title, Author author) {
+            this.title = title;
+            this.author = author;
+        }
 
-        book2.setPublicationYear(2018);
+        public String toString() {
+            return title + " by " + author.toString();
+        }
 
-        System.out.println("nAfter updating publication year:");
-        System.out.println("Book 1: " + book1.getTitle() + " by " + book1.getAuthor().getFirstName() + " " + book1.getAuthor().getLastName() + ", Year: " + book1.getPublicationYear());
-        System.out.println("Book 2: " + book2.getTitle() + " by " + book2.getAuthor().getFirstName() + " " + book2.getAuthor().getLastName() + ", Year: " + book2.getPublicationYear());
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (!(obj instanceof Book)) return false;
+            Book book = (Book) obj;
+            return title.equals(book.title) && author.equals(book.author);
+        }
+
+        public int hashCode() {
+            return title.hashCode() * 31 + author.hashCode();
+        }
     }
-}
