@@ -1,90 +1,67 @@
-class Author {
-    private String firstName;
-    private String lastName;
+class Main {
+    private static Employee[] employees = new Employee[10];
 
-    public Author(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public static void main(String[] args) {
+        initializeEmployees();
+        listEmployees();
+        System.out.println("Total Salary: " + totalSalary());
+        System.out.println("Min Salary Employee: " + minSalary());
+        System.out.println("Max Salary Employee: " + maxSalary());
+        System.out.println("Average Salary: " + averageSalary());
     }
 
-    public String getFirstName() {
-        return firstName;
+    private static void initializeEmployees() {
+        employees[0] = new Employee("Иванов И.И.", 1, 30000);
+        employees[1] = new Employee("Петров П.П.", 2, 35000);
+        employees[2] = new Employee("Сидоров С.С.", 3, 25000);
+        employees[3] = new Employee("Кузнецов К.К.", 4, 40000);
+        employees[4] = new Employee("Попов П.П.", 5, 15000);
+        employees[5] = new Employee("Васильев В.В.", 2, 45000);
+        employees[6] = new Employee("Лебедев Л.Л.", 3, 50000);
+        employees[7] = new Employee("Семенов С.С.", 4, 28000);
+        employees[8] = new Employee("Федоров Ф.Ф.", 5, 30000);
+        employees[9] = new Employee("Дмитриев Д.Д.", 1, 32000);
     }
 
-    public String getLastName() {
-        return lastName;
+    public static void listEmployees() {
+        for (Employee emp : employees) {
+            if (emp != null) {
+                System.out.println(emp);
+            }
+        }
+    }
+
+    public static double totalSalary() {
+        double total = 0;
+        for (Employee emp : employees) {
+            if (emp != null) {
+                total += emp.getSalary();
+            }
+        }
+        return total;
+    }
+
+    public static Employee minSalary() {
+        Employee min = employees[0];
+        for (Employee emp : employees) {
+            if (emp != null && emp.getSalary() < min.getSalary()) {
+                min = emp;
+            }
+        }
+        return min;
+    }
+
+    public static Employee maxSalary() {
+        Employee max = employees[0];
+        for (Employee emp : employees) {
+            if (emp != null && emp.getSalary() > max.getSalary()) {
+                max = emp;
+            }
+        }
+        return max;
+    }
+
+    public static double averageSalary() {
+        return totalSalary() / 10;
     }
 }
-
-class Book {
-    private String title;
-    private Author author;
-    private int publicationYear;
-
-    public Book(String title, Author author, int publicationYear) {
-        this.title = title;
-        this.author = author;
-        this.publicationYear = publicationYear;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public int getPublicationYear() {
-        return publicationYear;
-    }
-
-    public class Author {
-        private String name;
-        private String surname;
-
-        public Author(String name, String surname) {
-            this.name = name;
-            this.surname = surname;
-        }
-
-        public String toString() {
-            return name + " " + surname;
-        }
-
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (!(obj instanceof Author)) return false;
-            Author author = (Author) obj;
-            return name.equals(author.name) && surname.equals(author.surname);
-        }
-
-        public int hashCode() {
-            return name.hashCode() * 31 + surname.hashCode();
-        }
-    }
-
-    public class Book {
-        private String title;
-        private Author author;
-
-        public Book(String title, Author author) {
-            this.title = title;
-            this.author = author;
-        }
-
-        public String toString() {
-            return title + " by " + author.toString();
-        }
-
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (!(obj instanceof Book)) return false;
-            Book book = (Book) obj;
-            return title.equals(book.title) && author.equals(book.author);
-        }
-
-        public int hashCode() {
-            return title.hashCode() * 31 + author.hashCode();
-        }
-    }
