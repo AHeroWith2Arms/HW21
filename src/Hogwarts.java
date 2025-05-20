@@ -1,20 +1,34 @@
 public class Hogwarts {
-    public static void main(String[] args) {
-        Gryffindor harry = new Gryffindor("Гарри Поттер", 80, 90, 85, 95);
-        Slytherin draco = new Slytherin("Драко Малфой", 85, 80, 90, 95);
+    private int magicPower;
+    private int transgressionDistance;
 
-        harry.describe();
-        draco.describe();
-
-        Gryffindor.compare(harry, new Gryffindor("Рон Уизли", 75, 80, 70, 85));
-        compareStudents(harry, draco);
+    public Hogwarts(int magicPower, int transgressionDistance) {
+        this.magicPower = magicPower;
+        this.transgressionDistance = transgressionDistance;
     }
 
-    public static void compareStudents(Student a, Student b) {
-        if (a.getMagicPower() + a.getTransgression() > b.getMagicPower() + b.getTransgression()) {
-            System.out.println(a.getName() + " сильнее!");
+    public int getMagicPower() {
+        return magicPower;
+    }
+
+    public int getTransgressionDistance() {
+        return transgressionDistance;
+    }
+
+    public void compareHogwartsStudents(Hogwarts other) {
+        int thisScore = this.magicPower + this.transgressionDistance;
+        int otherScore = other.magicPower + other.transgressionDistance;
+
+        if (thisScore > otherScore) {
+            System.out.println(this.getClass().getSimpleName() + " is better than " + other.getClass().getSimpleName());
+        } else if (thisScore < otherScore) {
+            System.out.println(other.getClass().getSimpleName() + " is better than " + this.getClass().getSimpleName());
         } else {
-            System.out.println(b.getName() + " сильнее!");
+            System.out.println(this.getClass().getSimpleName() + " and " + other.getClass().getSimpleName() + " are equal");
         }
+    }
+
+    public String describeStudent() {
+        return "Magic Power: " + magicPower + ", Transgression Distance: " + transgressionDistance;
     }
 }
